@@ -5,7 +5,7 @@ Upload a PDF, ask questions about it, and get answers grounded in the document's
 ---
 ## Demo
 
-![Demo Screenshot](screenshot/Screennsot.jpeg)
+![Demo Screenshot](./screenshot/Screenshot.jpeg)
 ## ✨ Features
 
 - **Upload & index PDFs** — pages are read, split into chunks, embedded, and stored.
