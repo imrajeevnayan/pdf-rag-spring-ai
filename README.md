@@ -3,7 +3,9 @@
 Upload a PDF, ask questions about it, and get answers grounded in the document's content — with source citations. Built with **Spring Boot 3.5**, **Spring AI 1.0.0**, **OpenRouter** (OpenAI-compatible API) for chat + embeddings, **H2** for document metadata, and a lightweight **file-based in-memory vector store** (no Docker, no external vector DB).
 
 ---
+## Demo
 
+![Demo Screenshot](screenshot/Screennsot.jpeg)
 ## ✨ Features
 
 - **Upload & index PDFs** — pages are read, split into chunks, embedded, and stored.
