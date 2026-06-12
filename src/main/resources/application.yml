@@ -1,0 +1,52 @@
+server:
+  port: 8080
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+  # ---- H2 database (file-based, persists between restarts) ----
+  datasource:
+    url: jdbc:h2:file:./data/ragdb;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  # ---- Spring AI -> OpenRouter (OpenAI-compatible) ----
+  ai:
+    # Chat runs on OpenRouter (OpenAI-compatible). Embeddings run LOCALLY via ONNX
+    # transformers (all-MiniLM-L6-v2, 384-dim), so NO OpenRouter/OpenAI credits are needed.
+    # The embedding model (~90 MB) is downloaded and cached on first ingestion.
+    model:
+      chat: openai
+      embedding: transformers
+    openai:
+      api-key: ${OPENROUTER_API_KEY}
+      base-url: https://openrouter.ai/api
+      chat:
+        options:
+          # FREE OpenRouter chat model (no credits needed). If you hit rate limits or it
+          # becomes unavailable, swap for any other id ending in ':free' from
+          # https://openrouter.ai/models?q=free  (e.g. meta-llama/llama-3.3-70b-instruct:free).
+          model: openrouter/free
+
+app:
+  rag:
+    top-k: 5
+    max-snippet-chars: 350
+  vectorstore:
+    # File where the in-memory vector store is persisted between restarts.
+    path: ./data/vectorstore.json

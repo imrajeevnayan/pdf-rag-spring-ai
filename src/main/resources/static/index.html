@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Q&A · Spring AI RAG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-mark">📄</div>
+      <div class="brand-text">
+        <h1>PDF Q&amp;A</h1>
+        <p>Ask questions about your PDFs · Spring AI + OpenRouter</p>
+      </div>
+    </div>
+    <span id="healthBadge" class="badge badge-muted">checking…</span>
+  </header>
+
+  <main class="layout">
+    <!-- Upload / library panel -->
+    <section class="card panel">
+      <h2 class="card-title">1 · Upload a PDF</h2>
+
+      <label id="dropzone" class="dropzone" for="fileInput">
+        <input id="fileInput" type="file" accept="application/pdf" hidden />
+        <div class="dz-icon">⬆️</div>
+        <div class="dz-main">Drag &amp; drop a PDF here</div>
+        <div class="dz-sub">or <span class="link">browse files</span> · max 50&nbsp;MB</div>
+        <div id="fileName" class="file-name" hidden></div>
+      </label>
+
+      <button id="uploadBtn" class="btn btn-primary" disabled>
+        <span class="btn-label">Upload &amp; index</span>
+        <span class="spinner" hidden></span>
+      </button>
+
+      <div id="uploadStatus" class="status" hidden></div>
+
+      <h2 class="card-title mt">Your documents</h2>
+      <ul id="docList" class="doc-list">
+        <li class="doc-empty">No documents yet. Upload one above.</li>
+      </ul>
+    </section>
+
+    <!-- Q&A panel -->
+    <section class="card panel">
+      <h2 class="card-title">2 · Ask a question</h2>
+
+      <label class="field-label" for="docSelect">Active document</label>
+      <select id="docSelect" class="select"></select>
+
+      <div id="chat" class="chat">
+        <div class="chat-placeholder">
+          <div class="cp-icon">💬</div>
+          <p>Upload a PDF, pick it above, then ask anything about it.</p>
+        </div>
+      </div>
+
+      <form id="askForm" class="ask-bar">
+        <input id="questionInput" class="ask-input" type="text"
+               placeholder="e.g. What is this document about?" autocomplete="off" />
+        <button id="askBtn" class="btn btn-primary btn-send" type="submit" disabled>
+          <span class="btn-label">Ask</span>
+          <span class="spinner" hidden></span>
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    Spring Boot · Spring AI 1.0.0 · OpenRouter · H2 · in-memory vector store
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
